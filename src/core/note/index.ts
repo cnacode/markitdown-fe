@@ -1,8 +1,9 @@
 import reducer from "./reducers"
-import { updateNote } from "./actions"
+import { setNote, setStatus } from "./actions"
 export type NoteState = {
     currentNote: string
     notes: string[]
+    status: number
 }
 
-export { reducer, updateNote }
+export { reducer, setNote, setStatus }
