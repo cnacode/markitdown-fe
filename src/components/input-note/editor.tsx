@@ -1,36 +1,38 @@
-import React, { FC, Fragment} from "react"
-import styled from "@emotion/styled"
-import { Editor as DraftEditor, EditorState, } from "draft-js"
-import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-import { connect } from "react-redux"
-import { updateNote } from "core/note"
-import { RootType } from "core/store"
-import {toDraftRaw} from "core/utils";
+import React, { FC, Fragment } from "react";
+import styled from "@emotion/styled";
+import { connect } from "react-redux";
+import { RootType } from "core/store";
+import 'react-markdown-editor-lite/lib/index.css';
+import MdEditor from 'react-markdown-editor-lite'
 
-const StyledEditor = styled.div``
+const StyledEditor = styled.div``;
 
 type Props = {
-    theme?: any
-    onChange: any
-    editorState: EditorState
-}
+  theme?: any;
+  onChange: any;
+  value: string;
+};
 
 const EditorComponent: FC<Props> = (props) => {
-    const {editorState, onChange} = props;
+  const { value, onChange } = props;
 
-    return (
-        <Fragment>
-            <StyledEditor>
-                <DraftEditor editorState={editorState} onChange={onChange} />
-            </StyledEditor>
-        </Fragment>
-    )
-}
+  return (
+    <Fragment>
+      <StyledEditor>
+        <MdEditor 
+        onChange={onChange} 
+        value={value} 
+        renderHTML={(text) => (<p></p>)}
+        />
+      </StyledEditor>
+    </Fragment>
+  );
+};
 
 const mapStateToProps = (state: RootType) => ({
-    note: state.note.currentNote,
-})
+  note: state.note.currentNote,
+});
 
-const Editor = connect(mapStateToProps, { updateNote })(EditorComponent)
+const Editor = connect(mapStateToProps)(EditorComponent);
 
-export default Editor
+export default Editor;
