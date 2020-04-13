@@ -10,7 +10,7 @@ const SideBarContainer = styled.div`
     position: absolute;
     float: left;
     margin-top: 2.5rem;
-    max-width: 25%;
+    max-width: 16.7%;
     ul{
         list-style: none;
         margin:0;
@@ -23,20 +23,20 @@ const SideBarContainer = styled.div`
 
     ::-webkit-scrollbar {
         -webkit-appearance: none;
-        width: 7px;
+        width: 4px;
     }
 
     ::-webkit-scrollbar-thumb {
         border-radius: 4px;
-        background-color: rgba(0, 0, 0, .5);
-        box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        background-color: rgba(90, 90, 90, .5);
+        box-shadow: 0 0 0.5px rgba(255, 255, 255, .5);
     }
 `
 
 const StyledNote = styled.li`
     border-bottom: 1px #535353 solid;
     :hover{
-        background-color: #bcbcbc;
+        background-color: #dfdfdf;
         cursor: pointer;
     }
 `;
@@ -49,12 +49,9 @@ const NoteTop = styled(Row)`
 const NoteBottom = styled(Row)`
     padding: 0.2rem 1rem 0.5rem 1.5rem;
 `
-const NoteTitle = styled(Col)`
-    margin: 0;
-`
 const NoteDate = styled(Col)`
     margin: 0;
-    margin-left: 9rem;
+    margin-left: 1rem;
 `
 
 
@@ -71,15 +68,18 @@ type NoteItem = {
 }
 
 const sidebarItems: NoteItem[] = []
+
 const item = {
     key: 'demo1',
     type: SideBarItemTypes.note,
-    title: 'demo title',
+    title: 'demo title its long long long',
     body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
     date:  (new Date()).toLocaleDateString(),
 };
+
 for(let i=0; i< 30; i++){
-    sidebarItems.push(item)
+    const titem: NoteItem = {...item, key: i.toString()}
+    sidebarItems.push(titem)
 }
 
 
@@ -90,21 +90,22 @@ type Props = {
 };
 
 const SideBarComponent: React.FC<Props> = (props) => {
-
+const onClick = (e: any) => {
+    console.log(e)
+}
 
   return (
     <SideBarContainer>
         <ul>
         {sidebarItems.map(item => {
-            const {key, title, body, date} = item;
+            const {key, body, date} = item;
             return (
-            <StyledNote key={key}>
-                <NoteTop>
-                    <NoteTitle>{title}</NoteTitle>
-                    <NoteDate>{date}</NoteDate>
+            <StyledNote key={key} onClick={()=>onClick(key)}>
+                <NoteTop className="justify-content-end">
+                    <NoteDate lg={5}>{date}</NoteDate>
                 </NoteTop>
                 <NoteBottom>
-                    {truncateString(body)}
+                    {truncateString(body, 80)}
                 </NoteBottom>
             </StyledNote>
             )
