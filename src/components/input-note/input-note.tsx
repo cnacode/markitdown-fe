@@ -6,7 +6,34 @@ import "react-markdown-editor-lite/lib/index.css";
 import MdEditor from "react-markdown-editor-lite";
 
 const StyleEditor = styled.div`
-  margin-top: 4rem;
+  margin-top: 2.5rem;
+  max-height: 90vh;
+  .rc-md-editor {
+    border: none;
+    font-family: "Goudy Bookletter 1911", serif;
+    height: 90vh;
+
+    .rc-md-navigation {
+      background-color: white;
+    }
+
+    .sec-md {
+      textarea {
+        font-size: 1.15rem !important;
+      }
+    }
+    .sec-html {
+      .section-container {
+        .custom-html-style {
+          p,
+          li,
+          a {
+            font-size: 1.15rem !important;
+          }
+        }
+      }
+    }
+  }
 `;
 
 type Props = {
