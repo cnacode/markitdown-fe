@@ -1,8 +1,13 @@
-import React from "react"
-import Note from "./note"
+import React from "react";
+
+import Note from "./note";
 
 const AuthenticatedApp = () => {
-    return <Note />
-}
+  return (
+    <React.Fragment>
+      <Note />
+    </React.Fragment>
+  );
+};
 
-export default AuthenticatedApp
+export default AuthenticatedApp;
