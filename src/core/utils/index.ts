@@ -1,13 +1,6 @@
-import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
-
-export const toMarkdownString = (value: string) => {
-  return draftToMarkdown(JSON.parse(value), {
-    escapeMarkdownCharacters: false,
-  });
-};
-
-export const toDraftRaw = (value: string) => {
-  return markdownToDraft(JSON.parse(value), {
-    escapeMarkdownCharacters: true,
-  });
-};
+export function truncateString(str: string, max: number) {
+  if (str.length <= max) {
+    return str
+  }
+  return str.slice(0, max) + '...'
+}
