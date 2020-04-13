@@ -7,27 +7,50 @@ import MdEditor from "react-markdown-editor-lite";
 
 const StyleEditor = styled.div`
   margin-top: 2.5rem;
-  max-height: 90vh;
   .rc-md-editor {
     border: none;
     font-family: "Goudy Bookletter 1911", serif;
-    height: 90vh;
+    height: 94.4vh;
 
     .rc-md-navigation {
       background-color: white;
+      border-bottom: 1px solid #eee;
     }
 
     .sec-md {
       textarea {
         font-size: 1.15rem !important;
+        ::-webkit-scrollbar {
+          -webkit-appearance: none;
+          width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background-color: rgba(90, 90, 90, 0.5);
+          box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.5);
+        }
       }
     }
+
     .sec-html {
       .section-container {
+        ::-webkit-scrollbar {
+          -webkit-appearance: none;
+          width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background-color: rgba(90, 90, 90, 0.5);
+          box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.5);
+        }
         .custom-html-style {
           p,
           li,
-          a {
+          a,
+          td,
+          th {
             font-size: 1.15rem !important;
           }
         }
