@@ -1,1 +1,1 @@
-declare module "markdown-draft-js"
+declare module "@opuscapita/react-markdown"
