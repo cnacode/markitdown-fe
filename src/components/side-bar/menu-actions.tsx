@@ -8,7 +8,7 @@ type Props = {
   status: number;
 };
 
-const NotesListComponent: FC<Props> = (props) => {
+const MenuActionsComponent: FC<Props> = (props) => {
   return (<p></p>);
 };
 
@@ -16,6 +16,6 @@ const mapStateToProps = (state: RootType) => ({
   status: state.note.status,
 });
 
-const NotesList = connect(mapStateToProps)(NotesListComponent);
+const MenuActions = connect(mapStateToProps)(MenuActionsComponent);
 
-export default NotesList;
+export default MenuActions;
