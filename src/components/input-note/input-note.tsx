@@ -1,6 +1,5 @@
 import React, { FC, Fragment } from "react";
 import styled from "@emotion/styled";
-import "react-mde/lib/styles/css/react-mde-all.css";
 import { PreviewNote } from "components/preview-note";
 import "react-markdown-editor-lite/lib/index.css";
 import MdEditor from "react-markdown-editor-lite";
@@ -8,7 +7,7 @@ import MdEditor from "react-markdown-editor-lite";
 const StyleEditor = styled.div`
   .rc-md-editor {
     border: none;
-    font-family: "Goudy Bookletter 1911", serif;
+    font-family: "IM Fell English", serif;
     height: 94.4vh;
 
     .rc-md-navigation {
@@ -16,9 +15,15 @@ const StyleEditor = styled.div`
       border-bottom: 1px solid #eee;
     }
 
+    .editor-container{
+      direction: rtl;
+    }
+
     .sec-md {
+      direction: ltr;
       textarea {
-        font-size: 1.15rem !important;
+        font-family: monospace;
+        font-size: 1.4rem !important;
         ::-webkit-scrollbar {
           -webkit-appearance: none;
           width: 4px;
@@ -33,6 +38,7 @@ const StyleEditor = styled.div`
     }
 
     .sec-html {
+      direction: ltr;
       .section-container {
         ::-webkit-scrollbar {
           -webkit-appearance: none;
@@ -80,6 +86,9 @@ const InputNote: FC<Props> = (props) => {
           onChange={onChange}
           value={value}
           renderHTML={(text) => Promise.resolve(<PreviewNote value={text} />)}
+          config={{
+            syncScrollMode: ['rightFollowLeft', 'leftFollowRight']
+          }}
         />
       </StyleEditor>
     </Fragment>

@@ -16,7 +16,7 @@ const SideBarContainer = styled.div`
     }
     border-right: 1px #535353 solid;
     height: 100%;
-    font-family: 'Goudy Bookletter 1911', serif;
+    font-family: 'IM Fell English', serif;
 `
 type Props = {
   theme?: any;
