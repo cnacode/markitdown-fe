@@ -8,7 +8,6 @@ import MenuActions from "./menu-actions";
 const SideBarContainer = styled.div`
     position: absolute;
     float: left;
-    margin-top: 2.5rem;
     max-width: 16.7%;
     ul{
         list-style: none;
@@ -18,18 +17,6 @@ const SideBarContainer = styled.div`
     border-right: 1px #535353 solid;
     height: 100%;
     font-family: 'Goudy Bookletter 1911', serif;
-    overflow-y: scroll;
-
-    ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: rgba(90, 90, 90, .5);
-        box-shadow: 0 0 0.5px rgba(255, 255, 255, .5);
-    }
 `
 type Props = {
   theme?: any;

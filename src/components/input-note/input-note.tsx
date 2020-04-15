@@ -6,7 +6,6 @@ import "react-markdown-editor-lite/lib/index.css";
 import MdEditor from "react-markdown-editor-lite";
 
 const StyleEditor = styled.div`
-  margin-top: 2.5rem;
   .rc-md-editor {
     border: none;
     font-family: "Goudy Bookletter 1911", serif;
