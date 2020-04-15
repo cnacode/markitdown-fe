@@ -1,13 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { RootType } from "core/store";
 import { truncateString } from "core/utils";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const Notes = styled.div`
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 85vh;
     ::-webkit-scrollbar {
         -webkit-appearance: none;
         width: 4px;
@@ -20,7 +23,7 @@ const Notes = styled.div`
     }
     
 `;
-const StyledNote = styled.li`
+const StyledNote = styled.div`
     border-bottom: 1px #535353 solid;
     :hover{
         background-color: #dfdfdf;
@@ -28,8 +31,7 @@ const StyledNote = styled.li`
     }
 `;
 
-const NoteFooter
- = styled(Row)`
+const NoteFooter = styled(Row)`
     border-top: 1px #eee solid;
     padding: 0rem;
     margin:0;
@@ -49,8 +51,6 @@ type Note = {
     date: string,
 }
 
-const notes: Note[] = []
-
 const note = {
     key: 'demo1',
     title: 'demo title its long long long',
@@ -58,22 +58,46 @@ const note = {
     date:  (new Date()).toLocaleDateString(),
 };
 
-
-for(let i=0; i< 30; i++){
-    const titem: Note = {...note, key: i.toString()}
-    notes.push(titem)
-}
-
 type Props = {
   theme?: any;
   onClick: any;
+  notes: Note[],
 };
 
+
+
+const initialNotes: Note[] = [];
+
+for(let i=0; i< 30; i++){
+    const item: Note = {...note, key: i.toString()}
+    initialNotes.push(item);
+}
+
+
 const NotesListComponent: FC<Props> = (props) => {
-    const {onClick} = props;
+    const {onClick, notes} = props;
+    const [, updateState] = React.useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
+    //demo notes - to remove
+    let hasMore = true;
+    const loadMore = () => {
+        hasMore = false;
+        for(let i=0; i< 30; i++){
+            const item: Note = {...note, key: i.toString()}
+            initialNotes.push(item);
+        }
+        forceUpdate()
+    }
+
   return (
     <Notes>
-    <ul>
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={loadMore}
+            hasMore={hasMore}
+            loader={<div className="loader" key={0}>Loading ...</div>}
+            useWindow={false}
+        >
     {notes.map(item => {
         const {key, body, date} = item;
         return (
@@ -88,13 +112,14 @@ const NotesListComponent: FC<Props> = (props) => {
         </StyledNote>
         )
     })}
-    </ul>
+     </InfiniteScroll>
     </Notes>
   );
 };
 
 const mapStateToProps = (state: RootType) => ({
   status: state.note.status,
+  notes: initialNotes,
 });
 
 const NotesList = connect(mapStateToProps)(NotesListComponent);
