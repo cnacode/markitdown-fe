@@ -1,11 +1,11 @@
 import React from "react";
 
-import Note from "./note";
+import CurrentNotePage from "./current-note";
 
 const AuthenticatedApp = () => {
   return (
     <React.Fragment>
-      <Note />
+      <CurrentNotePage />
     </React.Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { RootType } from "core/store";

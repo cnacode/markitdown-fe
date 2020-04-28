@@ -13,6 +13,10 @@ const StyleEditor = styled.div`
     .rc-md-navigation {
       background-color: white;
       border-bottom: 1px solid #eee;
+      i{
+        font-size: 1.5rem;
+        margin: 0 0.25rem;
+      }
     }
 
     .editor-container{
@@ -57,6 +61,7 @@ const StyleEditor = styled.div`
           td,
           th {
             font-size: 1.15rem !important;
+            color: #414141 !important;
           }
         }
       }

@@ -25,12 +25,14 @@ const PageContainer = styled.div`
 type Props = {
   theme?: any;
   note: string;
+  setNote: any;
+  setStatus: any;
 };
 
 let timer = setTimeout(() => {}, 0);
 
-const NotePage: FC<Props> = (props) => {
-  const { note } = props;
+const CurrentNotePage: FC<Props> = (props) => {
+  const { note, setNote, setStatus } = props;
 
   const saveNote = (value: string) => {
     clearTimeout(timer);
@@ -59,6 +61,6 @@ const mapStateToProps = (state: RootType) => ({
   note: state.note.currentNote,
 });
 
-const Note = connect(mapStateToProps, { setNote, setStatus })(NotePage);
+const Note = connect(mapStateToProps, { setNote, setStatus })(CurrentNotePage);
 
 export default Note;

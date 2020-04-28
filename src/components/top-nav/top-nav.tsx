@@ -5,7 +5,7 @@ import { RootType } from "core/store";
 import Nav from "react-bootstrap/Nav";
 
 const StyledNav = styled(Nav)`
-  border-bottom: 1px #535353 solid;
+  border-bottom: 1px #ddd solid;
   width: 100%;
   margin:0;
   z-index: 99;
@@ -36,14 +36,14 @@ const TopNavComponent: FC<Props> = (props) => {
       <Nav.Item className="ml-2">
         <Nav.Link href="/home">Howdy, Sina.</Nav.Link>
       </Nav.Item>
-      <Nav.Item className="ml-3">
-        <Nav.Link eventKey="link-2">Account</Nav.Link>
-      </Nav.Item>
-      <Nav.Item className="ml-3">
+      <Nav.Item className="ml-2 ">
         <Status status={status}>{status === 0 ? "(Syncing...)" : "(Synced)"}</Status>
       </Nav.Item>
       
       <Nav.Item className="ml-auto">
+        <Nav.Link eventKey="link-2">Account</Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="ml-1">
         <Nav.Link eventKey="disabled" disabled>
           Logout
         </Nav.Link>
