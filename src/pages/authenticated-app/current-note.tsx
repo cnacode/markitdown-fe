@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import InputNote from "components/input-note";
+import Editor from "components/write-note";
 import TopNav from "components/top-nav";
-import { setNote, setStatus } from "core/note";
+import { updateCurrentNote, setStatus } from "core/services/note";
 import { RootType } from "core/store";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
@@ -25,21 +25,22 @@ const PageContainer = styled.div`
 type Props = {
   theme?: any;
   note: string;
-  setNote: any;
+  updateCurrentNote: any;
   setStatus: any;
 };
 
 let timer = setTimeout(() => {}, 0);
 
 const CurrentNotePage: FC<Props> = (props) => {
-  const { note, setNote, setStatus } = props;
+  const { note, updateCurrentNote, setStatus } = props;
 
   const saveNote = (value: string) => {
     clearTimeout(timer);
+    setStatus("saving");
     timer = setTimeout(() => {
-      setNote(value);
+      updateCurrentNote(value);
       setStatus("saved");
-    }, 2000);
+    }, 3000);
   };
 
   return (
@@ -49,7 +50,7 @@ const CurrentNotePage: FC<Props> = (props) => {
       <Container fluid>
         <Row className="justify-content-end">
           <Col id="content" lg={10}>
-            <InputNote note={note} saveNote={saveNote} />
+            <Editor note={note} saveNote={saveNote} />
           </Col>
         </Row>
       </Container>
@@ -61,6 +62,8 @@ const mapStateToProps = (state: RootType) => ({
   note: state.note.currentNote,
 });
 
-const Note = connect(mapStateToProps, { setNote, setStatus })(CurrentNotePage);
+const Note = connect(mapStateToProps, { updateCurrentNote, setStatus })(
+  CurrentNotePage
+);
 
 export default Note;

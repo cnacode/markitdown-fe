@@ -4,24 +4,22 @@ import { updateCurrentNote as loginStartAction } from "./actions";
 
 const updateCurrentNote = loginStartAction.toString();
 
-const placeHolder =`
-  # H1
-  ## H2
-  ### H3
-  #### H4
-  ##### H5
-  ###### H6
+const placeHolder = `
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
 
-  Alt-H2 \n
-
-  horizental line:
-  ------  
- ## Text Styling:
-  *This text will be italic* \n
-  _This will also be italic_ \n
-  **This text will be bold** \n
-  __This will also be bold__ \n
-  *You **can** combine them* \n
+horizontal line:
+------  
+## Text Styling:
+*This text will be italic* \n
+_This will also be italic_ \n
+**This text will be bold** \n
+__This will also be bold__ \n
+*You **can** combine them* \n
 
 
 ## Here's a table:
@@ -46,7 +44,7 @@ const placeHolder =`
   * 
 
 
-## BLOCKQUOTES
+## QUOTE BLOCKS
   As Grace Hopper said:
   > I’ve always been more interested
   > in the future than in the past.
@@ -63,11 +61,7 @@ http://github.com - automatic! \n
 \\#literal hashtags\\# \n
 
 
-`
-
-
-
-
+`;
 
 const defaultState: NoteState = {
   currentNote: placeHolder,
