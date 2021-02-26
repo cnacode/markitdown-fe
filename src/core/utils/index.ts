@@ -4,3 +4,5 @@ export function truncateString(str: string, max: number) {
   }
   return str.slice(0, max) + '...'
 }
+
+export { emptyNotePlaceHolder } from 'core/utils/consts'

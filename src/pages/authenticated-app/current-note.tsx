@@ -1,14 +1,14 @@
-import React, { FC } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Editor from "components/write-note";
-import TopNav from "components/top-nav";
-import { updateCurrentNote, setStatus } from "core/services/note";
-import { RootType } from "core/store";
-import { connect } from "react-redux";
-import styled from "@emotion/styled";
-import SideBar from "components/side-bar";
+import React, { FC } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Editor from 'components/write-note'
+import TopNav from 'components/top-nav'
+import { updateNote, setStatus } from 'core/services/note'
+import { RootType } from 'core/store'
+import { connect } from 'react-redux'
+import styled from '@emotion/styled'
+import SideBar from 'components/side-bar'
 
 const PageContainer = styled.div`
   overflow-y: hidden;
@@ -20,28 +20,28 @@ const PageContainer = styled.div`
   #content {
     padding: 0;
   }
-`;
+`
 
 type Props = {
-  theme?: any;
-  note: string;
-  updateCurrentNote: any;
-  setStatus: any;
-};
+  theme?: any
+  note: string
+  updateNote: any
+  setStatus: any
+}
 
-let timer = setTimeout(() => {}, 0);
+let timer = setTimeout(() => {}, 0)
 
 const CurrentNotePage: FC<Props> = (props) => {
-  const { note, updateCurrentNote, setStatus } = props;
+  const { note, updateNote, setStatus } = props
 
   const saveNote = (value: string) => {
-    clearTimeout(timer);
-    setStatus("saving");
+    clearTimeout(timer)
+    setStatus('saving')
     timer = setTimeout(() => {
-      updateCurrentNote(value);
-      setStatus("saved");
-    }, 3000);
-  };
+      updateNote(value)
+      setStatus('saved')
+    }, 3000)
+  }
 
   return (
     <PageContainer>
@@ -55,15 +55,13 @@ const CurrentNotePage: FC<Props> = (props) => {
         </Row>
       </Container>
     </PageContainer>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state: RootType) => ({
   note: state.note.currentNote,
-});
+})
 
-const Note = connect(mapStateToProps, { updateCurrentNote, setStatus })(
-  CurrentNotePage
-);
+const Note = connect(mapStateToProps, { updateNote, setStatus })(CurrentNotePage)
 
-export default Note;
+export default Note

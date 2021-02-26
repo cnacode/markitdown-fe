@@ -1,11 +1,9 @@
-import reducer from "./reducers"
-import { updateCurrentNote, setStatus } from "./actions"
+import { UPDATE_NOTE, UPDATE_NOTE_STATUS } from 'core/store/note'
 
-
-export type NoteState = {
-    currentNote: string
-    notes: string[]
-    status: number
+export const updateNote = (note: string) => (dispatch: any) => {
+  dispatch(UPDATE_NOTE(note))
 }
 
-export { reducer, updateCurrentNote, setStatus }
+export const setStatus = (status: NoteStoreStatus) => (dispatch: any) => {
+  dispatch(UPDATE_NOTE_STATUS(status))
+}
