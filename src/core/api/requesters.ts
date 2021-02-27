@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cookie from 'js-cookie'
+import { serialize } from 'core/utils'
 
 export const postRequester = async (route: string, body: any) => {
   const token = cookie.get('tk')
@@ -19,7 +20,8 @@ export const postRequester = async (route: string, body: any) => {
   }
 }
 
-export const getRequester = async (route: string, query: string) => {
+export const getRequester = async (route: string, query?: { [key: string]: any }) => {
+  const serializedQuery = query ? serialize(query) : ''
   const token = cookie.get('tk')
 
   axios.interceptors.request.use((req) => {
@@ -30,7 +32,7 @@ export const getRequester = async (route: string, query: string) => {
   })
 
   try {
-    const response = await axios.get(`${route}?${query}`)
+    const response = await axios.get(`${route}?${serializedQuery}`)
     console.log('res', response)
   } catch (error) {
     console.log('err', error)
