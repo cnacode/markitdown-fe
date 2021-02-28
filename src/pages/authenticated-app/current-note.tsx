@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Editor from 'components/write-note'
 import TopNav from 'components/top-nav'
 import { updateNote, setStatus } from 'core/services/note'
-import { RootType } from 'core/store'
+
 import { connect } from 'react-redux'
 import styled from '@emotion/styled'
 import SideBar from 'components/side-bar'
@@ -58,7 +58,7 @@ const CurrentNotePage: FC<Props> = (props) => {
   )
 }
 
-const mapStateToProps = (state: RootType) => ({
+const mapStateToProps = (state: ApplicationStore) => ({
   note: state.note.currentNote,
 })
 
