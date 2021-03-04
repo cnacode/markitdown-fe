@@ -12,10 +12,10 @@ declare global {
   //Note Types
   type Note = {
     key: string
-    title: string
     body: string
     date: string
   }
+
   type NoteStore = NoteStoreType
   type NoteStoreStatus = NoteStoreStatusImported
 
