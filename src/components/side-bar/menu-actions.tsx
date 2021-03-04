@@ -1,21 +1,20 @@
-import React, { FC } from "react";
-import styled from "@emotion/styled";
-import { connect } from "react-redux";
-import { RootType } from "core/store";
-import { FaSearch, FaPlus } from "react-icons/fa";
-import { MdSort } from "react-icons/md";
+import React, { FC } from 'react'
+import styled from '@emotion/styled'
+import { connect } from 'react-redux'
+
+import { FaSearch, FaPlus } from 'react-icons/fa'
+import { MdSort } from 'react-icons/md'
 
 type Props = {
-  theme?: any;
-  status: number;
-};
+  theme?: any
+}
 
 const Actions = styled.ul`
-  font-family: "IM Fell English";
+  font-family: 'IM Fell English';
   list-style: none;
   margin: 0;
   padding: 0;
-`;
+`
 
 const Action = styled.li`
   padding: 0;
@@ -29,7 +28,7 @@ const Action = styled.li`
     cursor: text;
   }
   border-bottom: 1px solid #535353;
-`;
+`
 
 const SearchBox = styled.input`
   border: none;
@@ -40,7 +39,7 @@ const SearchBox = styled.input`
   :hover {
     background-color: #eee;
   }
-`;
+`
 const Sort = styled.span`
   font-size: 2rem;
   margin: 0;
@@ -55,7 +54,7 @@ const Sort = styled.span`
   i {
     margin: 0 auto;
   }
-`;
+`
 const NewNoteButton = styled.button`
   background: #fff;
   border: none;
@@ -74,7 +73,7 @@ const NewNoteButton = styled.button`
   span {
     color: #414141;
   }
-`;
+`
 
 const MenuActionsComponent: FC<Props> = (props) => {
   return (
@@ -93,13 +92,11 @@ const MenuActionsComponent: FC<Props> = (props) => {
         </Sort>
       </Action>
     </Actions>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state: RootType) => ({
-  status: state.note.status,
-});
+const mapStateToProps = (state: ApplicationStore) => ({})
 
-const MenuActions = connect(mapStateToProps)(MenuActionsComponent);
+const MenuActions = connect(mapStateToProps)(MenuActionsComponent)
 
-export default MenuActions;
+export default MenuActions

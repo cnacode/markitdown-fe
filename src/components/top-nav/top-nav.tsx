@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { connect } from 'react-redux'
-import { RootType } from 'core/store'
 import Nav from 'react-bootstrap/Nav'
 
 const StyledNav = styled(Nav)`
@@ -54,8 +53,8 @@ const TopNavComponent: FC<Props> = (props) => {
   )
 }
 
-const mapStateToProps = (state: RootType) => ({
-  status: state.note.status,
+const mapStateToProps = (state: ApplicationStore) => ({
+  status: state.note.currentNoteStatus,
 })
 
 const TopNav = connect(mapStateToProps)(TopNavComponent)
