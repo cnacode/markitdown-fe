@@ -10,9 +10,11 @@
     "@types/js-cookie": "^2.2.6",
     "@types/react-infinite-scroller": "^1.2.1",
     "@types/react-router-dom": "^5.1.5",
+    "@types/uuid": "^8.3.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "bootstrap": "^4.4.1",
+    "date-fns": "^2.18.0",
     "emotion-theming": "^10.0.27",
     "js-cookie": "^2.2.1",
     "react": "^16.12.0",
@@ -31,7 +33,8 @@
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
