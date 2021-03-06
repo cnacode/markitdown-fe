@@ -1,1 +1,1 @@
-export { default as PreviewNote } from "./preview-note"
+export { default as RenderedMarkdown } from './RenderedMarkdown'
