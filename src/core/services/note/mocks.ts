@@ -17,7 +17,7 @@ export default (mockNotes: MockAdapter) => {
     lastServedIndex += limit
     const mockedList = [...Array(limit)].map(() => {
       const key = uuidv4()
-      const date = format(new Date(), 'MMM dd yyyy')
+      const date = format(new Date(), 'MMMM dd yyyy')
 
       return {
         body: emptyNotePlaceHolder,

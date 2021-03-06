@@ -91,7 +91,7 @@ const NotesListComponent: FC<Props> = (props) => {
                 <ReactMarkdown source={truncateString(body, 35)} />
               </NoteBody>
               <NoteFooter className="justify-content-end">
-                <NoteDate lg={7}>{date}</NoteDate>
+                <NoteDate lg={5}>{date}</NoteDate>
               </NoteFooter>
             </StyledNote>
           )
