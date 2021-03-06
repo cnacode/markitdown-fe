@@ -2,7 +2,7 @@ import axios from 'axios'
 import cookie from 'js-cookie'
 import { serialize } from 'core/utils'
 import { apiBase as base } from 'core/config'
-import mockNotes from 'core/services/note/mocks'
+import { mockNotes } from 'core/services/note'
 import MockAdapter from 'axios-mock-adapter'
 
 axios.interceptors.response.use((res) => {

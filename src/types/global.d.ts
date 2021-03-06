@@ -1,6 +1,7 @@
 import { AuthenticationStoreImported } from 'core/store/authentication'
 import { NoteType as NoteStoreType, NoteStoreStatusImported } from 'core/store/note'
 import { ApplicationStore as ApplicationStoreImported } from 'core/store'
+import { RootStateOrAny } from 'react-redux'
 
 declare global {
   //App Types
@@ -20,4 +21,6 @@ declare global {
   type NoteStoreStatus = NoteStoreStatusImported
 
   type ApplicationStore = ApplicationStoreImported
+
+  type GetState = () => AppStore
 }
