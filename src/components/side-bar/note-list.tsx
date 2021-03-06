@@ -5,7 +5,13 @@ import { truncateString } from 'core/utils'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InfiniteScroll from 'react-infinite-scroller'
-import { getNotesTotalNumber, listNotes } from 'core/services/note'
+import {
+  getNotesTotalNumber,
+  listNotes,
+  updateCurrentNote,
+  saveCurrentNoteLocal,
+  saveCurrentNoteRemote,
+} from 'core/services/note'
 import ReactMarkdown from 'react-markdown'
 
 const Notes = styled.div`
@@ -51,20 +57,37 @@ type Props = {
   totalNumberOfNotes: Number
   getNotesTotalNumber: any
   listNotes: any
+  updateCurrentNote: any
+  saveCurrentNoteLocal: any
+  saveCurrentNoteRemote: any
 }
 
 const NotesListComponent: FC<Props> = (props) => {
-  let { onClick, notes, totalNumberOfNotes, getNotesTotalNumber, listNotes } = props
+  let {
+    notes,
+    totalNumberOfNotes,
+    getNotesTotalNumber,
+    listNotes,
+    updateCurrentNote,
+    saveCurrentNoteLocal,
+    saveCurrentNoteRemote,
+  } = props
   if (!notes || !notes[0]) notes = []
 
   const getData = () => {
     getNotesTotalNumber()
   }
 
-  const page = 0
+  const onClick = async (key: string, item: Note) => {
+    await saveCurrentNoteLocal(item)
+    await saveCurrentNoteRemote(item)
+    updateCurrentNote(key)
+  }
+
   const limit = 10
-  let hasMore = page * limit < totalNumberOfNotes
-  let loadMore = () => {
+  let hasMore = true
+  let loadMore = (page: number) => {
+    hasMore = page * limit < totalNumberOfNotes
     listNotes(page, limit)
   }
   useEffect(getData, [])
@@ -72,7 +95,7 @@ const NotesListComponent: FC<Props> = (props) => {
   return (
     <Notes>
       <InfiniteScroll
-        pageStart={page}
+        pageStart={0}
         loadMore={loadMore}
         hasMore={hasMore}
         loader={
@@ -86,7 +109,7 @@ const NotesListComponent: FC<Props> = (props) => {
           const { key, body, date } = item
 
           return (
-            <StyledNote key={key} onClick={() => onClick(key)}>
+            <StyledNote key={key} onClick={() => onClick(key, item)}>
               <NoteBody>
                 <ReactMarkdown source={truncateString(body, 35)} />
               </NoteBody>
@@ -109,6 +132,9 @@ const mapStateToProps = (state: ApplicationStore) => ({
 const mapDispatchToProps = {
   getNotesTotalNumber,
   listNotes,
+  updateCurrentNote,
+  saveCurrentNoteLocal,
+  saveCurrentNoteRemote,
 }
 
 const NotesList: any = connect(mapStateToProps, mapDispatchToProps)(NotesListComponent)
