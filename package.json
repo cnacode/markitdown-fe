@@ -6,7 +6,6 @@
     "@emotion/styled": "^10.0.27",
     "@opuscapita/react-markdown": "^2.3.11",
     "@types/axios": "^0.14.0",
-    "@types/axios-mock-adapter": "^1.10.0",
     "@types/js-cookie": "^2.2.6",
     "@types/react-infinite-scroller": "^1.2.1",
     "@types/react-router-dom": "^5.1.5",
@@ -37,6 +36,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/axios-mock-adapter": "^1.10.0",
+    "redux-devtools-extension": "^2.13.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
