@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Editor from 'components/write-note'
 import TopNav from 'components/top-nav'
-import { updateNote, setStatus } from 'core/services/note'
+import { saveNote } from 'core/services/note'
 
 import { connect } from 'react-redux'
 import styled from '@emotion/styled'
@@ -24,22 +24,26 @@ const PageContainer = styled.div`
 
 type Props = {
   theme?: any
-  note: string
-  updateNote: any
-  setStatus: any
+  notes: NoteInStore
+  saveNote: any
+  currentNoteId?: string
 }
 
 let timer = setTimeout(() => {}, 0)
 
 const CurrentNotePage: FC<Props> = (props) => {
-  const { note, updateNote, setStatus } = props
+  const { notes, currentNoteId } = props
 
-  const saveNote = (value: string) => {
+  const note = currentNoteId ? notes[currentNoteId] : undefined
+
+  const saveNoteOnTypeStop = (value: string) => {
     clearTimeout(timer)
-    setStatus('saving')
     timer = setTimeout(() => {
-      updateNote(value)
-      setStatus('saved')
+      if (note)
+        saveNote({
+          ...note,
+          body: value,
+        })
     }, 3000)
   }
 
@@ -48,20 +52,25 @@ const CurrentNotePage: FC<Props> = (props) => {
       <TopNav />
       <SideBar />
       <Container fluid>
-        <Row className="justify-content-end">
-          <Col id="content" lg={10}>
-            <Editor note={note} saveNote={saveNote} />
-          </Col>
-        </Row>
+        {note ? (
+          <Row className="justify-content-end">
+            <Col id="content" lg={10}>
+              <Editor noteBody={note.body} saveNote={saveNoteOnTypeStop} />
+            </Col>
+          </Row>
+        ) : (
+          <div>no notes selected</div>
+        )}
       </Container>
     </PageContainer>
   )
 }
 
 const mapStateToProps = (state: ApplicationStore) => ({
-  note: state.note.currentNote,
+  notes: state.note.list,
+  currentNoteId: state.note.currentNoteId,
 })
 
-const Note = connect(mapStateToProps, { updateNote, setStatus })(CurrentNotePage)
+const Note = connect(mapStateToProps, { saveNote })(CurrentNotePage)
 
 export default Note

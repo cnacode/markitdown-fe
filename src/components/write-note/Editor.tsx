@@ -1,13 +1,13 @@
-import React, { FC, Fragment } from "react";
-import styled from "@emotion/styled";
-import { PreviewNote } from "components/view-note";
-import "react-markdown-editor-lite/lib/index.css";
-import MdEditor from "react-markdown-editor-lite";
+import React, { FC, Fragment, useEffect } from 'react'
+import styled from '@emotion/styled'
+import { RenderedMarkdown } from 'components/view-note'
+import 'react-markdown-editor-lite/lib/index.css'
+import MdEditor from 'react-markdown-editor-lite'
 
 const StyleEditor: any = styled.div`
   .rc-md-editor {
     border: none;
-    font-family: "IM Fell English", serif;
+    font-family: 'IM Fell English', serif;
     height: 94.4vh;
 
     .rc-md-navigation {
@@ -71,22 +71,26 @@ const StyleEditor: any = styled.div`
       }
     }
   }
-`;
+`
 
 type Props = {
-  theme?: any;
-  note: string;
-  saveNote?: any;
-};
+  theme?: any
+  noteBody: string
+  saveNote: any
+}
 
 const Editor: FC<Props> = (props) => {
-  const { note, saveNote } = props;
-  const [value, setValue] = React.useState(note);
+  const { noteBody, saveNote } = props
+  const [value, setValue] = React.useState('')
+
+  useEffect(() => {
+    setValue(noteBody)
+  }, [noteBody])
 
   const onChange = ({ text }: any) => {
-    setValue(text);
-    saveNote(text);
-  };
+    setValue(text)
+    saveNote(text)
+  }
 
   return (
     <Fragment>
@@ -94,14 +98,14 @@ const Editor: FC<Props> = (props) => {
         <MdEditor
           onChange={onChange}
           value={value}
-          renderHTML={(text) => Promise.resolve(<PreviewNote value={text} />)}
+          renderHTML={(text) => Promise.resolve(<RenderedMarkdown value={text} />)}
           config={{
-            syncScrollMode: ["leftFollowRight", "rightFollowLeft"],
+            syncScrollMode: ['leftFollowRight', 'rightFollowLeft'],
           }}
         />
       </StyleEditor>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Editor;
+export default Editor

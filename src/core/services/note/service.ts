@@ -1,58 +1,54 @@
 import { getRequester } from 'core/api'
 import {
-  UPDATE_NOTE,
-  UPDATE_NOTE_STATUS,
-  UPDATE_NOTE_LIST,
+  SET_NOTE_CONTENT,
+  SET_NOTE_LIST,
   NOTE_LIST_LOADING,
   NOTE_LIST_ERROR,
-  UPDATE_NOTE_LIST_TOTAL_NUMBER,
+  SET_NOTE_STATUS,
+  SET_NOTE_LIST_TOTAL_NUMBER,
+  SET_CURRENT_NOTE,
 } from 'core/store/note'
-import { localStorageHandler } from 'core/utils'
-
-import {} from 'date-fns'
-
-export const updateNote = (note: string) => (dispatch: any) => {
-  dispatch(UPDATE_NOTE(note))
-}
 
 export const setStatus = (status: NoteStoreStatus) => (dispatch: any) => {
-  dispatch(UPDATE_NOTE_STATUS(status))
+  dispatch(SET_NOTE_STATUS(status))
 }
 
 export const getNotesTotalNumber = () => async (dispatch: any) => {
   try {
     const totalNumber = await getRequester('/note/count')
-    dispatch(UPDATE_NOTE_LIST_TOTAL_NUMBER(totalNumber?.data.noteCount))
+    dispatch(SET_NOTE_LIST_TOTAL_NUMBER(totalNumber?.data.noteCount))
   } catch (e) {
     dispatch(NOTE_LIST_ERROR(true))
   }
 }
 
-export const listNotes = (page: number, limit: number) => async (dispatch: any) => {
-  dispatch(NOTE_LIST_LOADING(true))
-  try {
-    const notes = await getRequester('/note/list', { page, limit })
-    if (!notes?.data.notesList.length) return
-    dispatch(NOTE_LIST_ERROR(false))
-    dispatch(UPDATE_NOTE_LIST(notes?.data.notesList))
-  } catch (e) {
-    dispatch(NOTE_LIST_ERROR(true))
-  }
-}
-
-export const updateCurrentNote = (newNoteId: string) => async (
+export const listNotes = (page: number, limit: number) => async (
   dispatch: any,
   getState: GetState
 ) => {
-  const {
-    note: { notes },
-  } = getState()
+  dispatch(NOTE_LIST_LOADING(true))
+  try {
+    const response = await getRequester('/note/list', { page, limit })
+    if (!response?.data.notesList.length) return
 
-  const newNote: Note = notes.filter((item: Note) => item.key === newNoteId)[0]
-  dispatch(UPDATE_NOTE(undefined))
-  dispatch(UPDATE_NOTE(newNote))
+    const newNotesList: NoteInStore = {}
+
+    response?.data.notesList.forEach((note: Note) => {
+      newNotesList[note.key] = note
+    })
+
+    dispatch(SET_NOTE_LIST(newNotesList))
+    dispatch(NOTE_LIST_ERROR(false))
+  } catch (e) {
+    console.log(e)
+    dispatch(NOTE_LIST_ERROR(true))
+  }
 }
-export const saveCurrentNoteLocal = (note: Note) => async (dispatch: any) => {
-  localStorageHandler.set(note.key, note)
+
+export const setCurrentNote = (newNoteId: string) => async (dispatch: any, getState: GetState) => {
+  dispatch(SET_CURRENT_NOTE(undefined))
+  dispatch(SET_CURRENT_NOTE(newNoteId))
 }
-export const saveCurrentNoteRemote = (note: Note) => async (dispatch: any) => {}
+export const saveNote = (note: Note) => async (dispatch: any) => {
+  dispatch(SET_NOTE_CONTENT(note))
+}
