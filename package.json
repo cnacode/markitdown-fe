@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-react-redux",
+  "name": "markitdown-fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,11 +36,10 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/axios-mock-adapter": "^1.10.0",
-    "redux-devtools-extension": "^2.13.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/axios-mock-adapter": "^1.10.0",
     "@types/jest": "^24.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
@@ -53,7 +52,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3"
+    "eslint-plugin-react": "^7.18.3",
+    "redux-devtools-extension": "^2.13.9"
   },
   "scripts": {
     "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
