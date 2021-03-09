@@ -54,7 +54,7 @@ const TopNavComponent: FC<Props> = (props) => {
 }
 
 const mapStateToProps = (state: ApplicationStore) => ({
-  status: state.note.currentNoteStatus,
+  status: state.note.syncStatus,
 })
 
 const TopNav = connect(mapStateToProps)(TopNavComponent)
