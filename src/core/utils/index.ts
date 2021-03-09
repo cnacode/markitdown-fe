@@ -1,3 +1,5 @@
+export { emptyNotePlaceHolder } from 'core/utils/consts'
+
 export function truncateString(str: string, max: number) {
   if (str.length <= max) {
     return str
@@ -14,4 +16,14 @@ export const serialize = function (obj: { [key: string]: boolean }) {
   return str.join('&')
 }
 
-export { emptyNotePlaceHolder } from 'core/utils/consts'
+export const localStorageHandler = {
+  get: (name: string) => {
+    const stringItem: string | null = window.localStorage.getItem(name)
+    return stringItem ? JSON.parse(stringItem) : undefined
+  },
+
+  set: (name: string, value: any) => {
+    const stringValue = JSON.stringify(value)
+    window.localStorage.setItem(name, stringValue)
+  },
+}
