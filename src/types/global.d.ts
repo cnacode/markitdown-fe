@@ -1,7 +1,6 @@
 import { AuthenticationStoreImported } from 'core/store/authentication'
 import { NoteType as NoteStoreType, NoteStoreStatusImported } from 'core/store/note'
 import { ApplicationStore as ApplicationStoreImported } from 'core/store'
-import { RootStateOrAny } from 'react-redux'
 
 declare global {
   //App Types
@@ -15,6 +14,15 @@ declare global {
     key: string
     body: string
     date: string
+  }
+
+  type NoteInStore = {
+    [key: string]: Note
+  }
+
+  enum SyncStatus {
+    SYNCED,
+    SYNCING,
   }
 
   type NoteStore = NoteStoreType
