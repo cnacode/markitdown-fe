@@ -9,6 +9,7 @@ const SideBarContainer = styled.div`
   position: absolute;
   float: left;
   max-width: 16.7%;
+  min-width: 215px;
   ul {
     list-style: none;
     margin: 0;

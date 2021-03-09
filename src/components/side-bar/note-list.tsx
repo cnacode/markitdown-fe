@@ -5,13 +5,7 @@ import { truncateString } from 'core/utils'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InfiniteScroll from 'react-infinite-scroller'
-import {
-  getNotesTotalNumber,
-  listNotes,
-  updateCurrentNote,
-  saveCurrentNoteLocal,
-  saveCurrentNoteRemote,
-} from 'core/services/note'
+import { getNotesTotalNumber, listNotes, setCurrentNote } from 'core/services/note'
 import ReactMarkdown from 'react-markdown'
 
 const Notes = styled.div`
@@ -36,7 +30,6 @@ const StyledNote = styled.div`
     cursor: pointer;
   }
 `
-
 const NoteFooter = styled(Row)`
   border-top: 1px #eee solid;
   padding: 0rem;
@@ -53,35 +46,25 @@ const NoteDate = styled(Col)`
 type Props = {
   theme?: any
   onClick: any
-  notes: any[]
+  notes: {}
   totalNumberOfNotes: Number
   getNotesTotalNumber: any
   listNotes: any
   updateCurrentNote: any
-  saveCurrentNoteLocal: any
-  saveCurrentNoteRemote: any
+  setCurrentNote: any
 }
 
 const NotesListComponent: FC<Props> = (props) => {
-  let {
-    notes,
-    totalNumberOfNotes,
-    getNotesTotalNumber,
-    listNotes,
-    updateCurrentNote,
-    saveCurrentNoteLocal,
-    saveCurrentNoteRemote,
-  } = props
-  if (!notes || !notes[0]) notes = []
+  let { notes, totalNumberOfNotes, getNotesTotalNumber, listNotes, setCurrentNote } = props
+
+  const noteList: Note[] = Object.values(notes)
 
   const getData = () => {
     getNotesTotalNumber()
   }
 
-  const onClick = async (key: string, item: Note) => {
-    await saveCurrentNoteLocal(item)
-    await saveCurrentNoteRemote(item)
-    updateCurrentNote(key)
+  const onClick = (key: string, item: Note) => {
+    setCurrentNote(key)
   }
 
   const limit = 10
@@ -105,9 +88,8 @@ const NotesListComponent: FC<Props> = (props) => {
         }
         useWindow={false}
       >
-        {notes.map((item) => {
+        {noteList.map((item) => {
           const { key, body, date } = item
-
           return (
             <StyledNote key={key} onClick={() => onClick(key, item)}>
               <NoteBody>
@@ -125,16 +107,14 @@ const NotesListComponent: FC<Props> = (props) => {
 }
 
 const mapStateToProps = (state: ApplicationStore) => ({
-  notes: state.note.notes,
+  notes: state.note.list,
   totalNumberOfNotes: state.note.notesTotalNumber,
 })
 
 const mapDispatchToProps = {
   getNotesTotalNumber,
   listNotes,
-  updateCurrentNote,
-  saveCurrentNoteLocal,
-  saveCurrentNoteRemote,
+  setCurrentNote,
 }
 
 const NotesList: any = connect(mapStateToProps, mapDispatchToProps)(NotesListComponent)
