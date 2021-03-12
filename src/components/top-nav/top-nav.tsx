@@ -19,8 +19,8 @@ const StyledNav = styled(Nav)`
 
 const Status: any = styled(Nav.Link)`
   color: ${(props: any) => (props.status === 0 ? 'black' : '')};
-  font-size: 1rem !important;
-  margin-top: 0.3rem;
+  font-size: 0.85rem !important;
+  margin-top: 0.5rem;
 `
 type Props = {
   theme?: any
@@ -32,16 +32,16 @@ const TopNavComponent: FC<Props> = (props) => {
 
   return (
     <StyledNav>
-      <Nav.Item className="ml-2">
-        <Nav.Link href="/">Howdy, Sina.</Nav.Link>
+      <Nav.Item>
+        <Nav.Link>Howdy, Sina.</Nav.Link>
       </Nav.Item>
-      <Nav.Item className="ml-2">
+      <Nav.Item>
         <Status status={status}>{status === 0 ? '(Saving...)' : '(All good)'}</Status>
       </Nav.Item>
 
       <Nav.Item className="ml-auto">
         <Nav.Link eventKey="account" href="/account">
-          Account
+          Settings
         </Nav.Link>
       </Nav.Item>
       <Nav.Item className="ml-1">

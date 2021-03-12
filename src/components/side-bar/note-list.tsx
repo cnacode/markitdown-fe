@@ -26,7 +26,7 @@ const Notes = styled.div`
 const StyledNote = styled.div`
   border-bottom: 1px #535353 solid;
   :hover {
-    background-color: #dfdfdf;
+    background-color: #eee;
     cursor: pointer;
   }
 `
@@ -49,8 +49,8 @@ const NoteBody = styled(Row)`
 `
 const NoteDate = styled(Col)`
   margin: 0;
-  margin-left: 1rem;
   font-family: 'Noto Sans JP';
+  text-align: right;
 `
 
 type Props = {
@@ -103,7 +103,7 @@ const NotesListComponent: FC<Props> = (props) => {
           return (
             <StyledNote key={key} onClick={() => onClick(key, item)}>
               <NoteBody>
-                <ReactMarkdown source={truncateString(body, 35)} />
+                <ReactMarkdown source={truncateString(body, 50)} />
               </NoteBody>
               <NoteFooter className="justify-content-end">
                 <NoteDate xs={12} md={8}>
