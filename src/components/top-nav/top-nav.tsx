@@ -9,7 +9,7 @@ const StyledNav = styled(Nav)`
   margin: 0;
   z-index: 99;
   background-color: #fff;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Noto Sans JP', serif;
   a {
     color: #414141;
     font-size: 1.4rem;
@@ -35,7 +35,7 @@ const TopNavComponent: FC<Props> = (props) => {
       <Nav.Item className="ml-2">
         <Nav.Link href="/">Howdy, Sina.</Nav.Link>
       </Nav.Item>
-      <Nav.Item className="ml-2 ">
+      <Nav.Item className="ml-2">
         <Status status={status}>{status === 0 ? '(Saving...)' : '(All good)'}</Status>
       </Nav.Item>
 

@@ -17,7 +17,7 @@ const SideBarContainer = styled.div`
   }
   border-right: 1px #535353 solid;
   height: 100%;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Frank Ruhl Libre', serif;
 `
 type Props = {
   theme?: any

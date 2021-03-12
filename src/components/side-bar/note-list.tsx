@@ -37,10 +37,20 @@ const NoteFooter = styled(Row)`
 `
 const NoteBody = styled(Row)`
   padding: 0.2rem 1rem 0.2rem 1.5rem;
+  font-family: 'Roboto Slab';
+  p,
+  li,
+  a,
+  td,
+  th {
+    font-size: 1.15rem !important;
+    color: #414141 !important;
+  }
 `
 const NoteDate = styled(Col)`
   margin: 0;
   margin-left: 1rem;
+  font-family: 'Noto Sans JP';
 `
 
 type Props = {
@@ -96,7 +106,9 @@ const NotesListComponent: FC<Props> = (props) => {
                 <ReactMarkdown source={truncateString(body, 35)} />
               </NoteBody>
               <NoteFooter className="justify-content-end">
-                <NoteDate lg={5}>{date}</NoteDate>
+                <NoteDate xs={12} md={8}>
+                  {date}
+                </NoteDate>
               </NoteFooter>
             </StyledNote>
           )

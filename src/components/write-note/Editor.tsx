@@ -7,7 +7,7 @@ import MdEditor from 'react-markdown-editor-lite'
 const StyleEditor: any = styled.div`
   .rc-md-editor {
     border: none;
-    font-family: 'IM Fell English', serif;
+    font-family: 'Roboto Slab', 'Courier New';
     height: 94.4vh;
 
     .rc-md-navigation {
@@ -45,6 +45,7 @@ const StyleEditor: any = styled.div`
     }
 
     .sec-html {
+      background-color: rgb(245 245 245 / 42%) !important;
       /* direction: ltr; */
       .section-container {
         ::-webkit-scrollbar {
