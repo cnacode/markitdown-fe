@@ -49,6 +49,13 @@ export const setCurrentNote = (newNoteId: string) => async (dispatch: any, getSt
   dispatch(SET_CURRENT_NOTE(undefined))
   dispatch(SET_CURRENT_NOTE(newNoteId))
 }
+
+let timer: NodeJS.Timeout
+
 export const saveNote = (note: Note) => async (dispatch: any) => {
   dispatch(SET_NOTE_CONTENT(note))
+  global.clearTimeout(timer)
+  timer = setTimeout(() => {
+    //do api call to save note
+  }, 3000)
 }

@@ -32,7 +32,7 @@ type Props = {
 let timer = setTimeout(() => {}, 0)
 
 const CurrentNotePage: FC<Props> = (props) => {
-  const { notes, currentNoteId } = props
+  const { notes, currentNoteId, saveNote } = props
 
   const note = currentNoteId ? notes[currentNoteId] : undefined
 
@@ -44,7 +44,7 @@ const CurrentNotePage: FC<Props> = (props) => {
           ...note,
           body: value,
         })
-    }, 3000)
+    }, 300)
   }
 
   return (
