@@ -30,7 +30,7 @@ const Action = styled.li`
     cursor: text;
   }
 
-  border-bottom: 1px solid #535353;
+  border-bottom: 1px solid #bfbfbf;
 `
 
 const SearchBox = styled.input`
@@ -73,6 +73,11 @@ const NewNoteButton = styled.button`
   }
   span {
     color: #414141;
+    margin-left: 0.5rem;
+  }
+  //plus icon
+  svg {
+    color: #a8a7a7;
   }
 `
 

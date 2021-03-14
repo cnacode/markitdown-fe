@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Nav from 'react-bootstrap/Nav'
 
 const StyledNav = styled(Nav)`
-  border-bottom: 1px #ddd solid;
+  border-bottom: 1px #e0e0e0 solid;
   width: 100%;
   margin: 0;
   z-index: 99;

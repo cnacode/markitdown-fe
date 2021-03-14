@@ -24,14 +24,14 @@ const Notes = styled.div`
   }
 `
 const StyledNote = styled.div`
-  border-bottom: 1px #535353 solid;
+  border-bottom: 1px #e0e0e0 solid;
   :hover {
     background-color: #eee;
     cursor: pointer;
   }
 `
 const NoteFooter = styled(Row)`
-  border-top: 1px #eee solid;
+  border-top: 1px #f7f7f7 solid;
   padding: 0rem;
   margin: 0;
 `

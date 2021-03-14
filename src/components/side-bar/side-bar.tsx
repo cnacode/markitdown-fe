@@ -15,7 +15,7 @@ const SideBarContainer = styled.div`
     margin: 0;
     padding: 0;
   }
-  border-right: 1px #535353 solid;
+  border-right: 1px #e0e0e0 solid;
   height: 100%;
   font-family: 'Frank Ruhl Libre', serif;
 `
