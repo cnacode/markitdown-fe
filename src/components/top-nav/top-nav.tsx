@@ -22,6 +22,11 @@ const Status: any = styled(Nav.Link)`
   font-size: 0.85rem !important;
   margin-top: 0.5rem;
 `
+
+const Howdy: any = styled(Nav.Link)`
+  padding-left: 0.5rem !important;
+`
+
 type Props = {
   theme?: any
   status: number
@@ -33,7 +38,7 @@ const TopNavComponent: FC<Props> = (props) => {
   return (
     <StyledNav>
       <Nav.Item>
-        <Nav.Link>Howdy, Sina.</Nav.Link>
+        <Howdy>Howdy, Sina.</Howdy>
       </Nav.Item>
       <Nav.Item>
         <Status status={status}>{status === 0 ? '(Saving...)' : '(All good)'}</Status>
